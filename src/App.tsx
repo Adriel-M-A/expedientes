@@ -1,14 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { MainLayout } from "./layouts/MainLayout";
 import Home from "./pages/Home";
 
 function App() {
   return (
-    // Contenedor de rutas para la aplicación
     <BrowserRouter>
-      {/* Definición de las rutas */}
       <Routes>
-        {/* Ruta para la página de inicio */}
-        <Route path="/" element={<Home />} />
+        {/* Ruta principal con layout */}
+        <Route path="/" element={<MainLayout />}>
+          {/* Ruta index para la página de inicio */}
+          <Route index element={<Home />} />
+          {/* Aquí se pueden agregar más rutas hijas, por ejemplo:
+          <Route path="about" element={<About />} />
+          */}
+        </Route>
       </Routes>
     </BrowserRouter>
   );
