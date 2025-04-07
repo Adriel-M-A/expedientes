@@ -6,13 +6,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Ruta principal con layout */}
         <Route path="/" element={<MainLayout />}>
-          {/* Ruta index para la página de inicio */}
           <Route index element={<Home />} />
-          {/* Aquí se pueden agregar más rutas hijas, por ejemplo:
-          <Route path="about" element={<About />} />
-          */}
         </Route>
       </Routes>
     </BrowserRouter>

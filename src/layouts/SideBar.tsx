@@ -1,34 +1,44 @@
 import { Link } from "react-router-dom";
+import { Home, Info, Mail, Settings, Users } from "lucide-react";
 
 interface SidebarProps {
   currentPath: string;
 }
 
-// Array con las rutas de navegación
 const navItems = [
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
+  { name: "Home", path: "/", icon: Home },
+  { name: "About", path: "/about", icon: Info },
+  { name: "Team", path: "/team", icon: Users },
+  { name: "Contact", path: "/contact", icon: Mail },
+  { name: "Settings", path: "/settings", icon: Settings },
 ];
 
 export function Sidebar({ currentPath }: SidebarProps) {
   return (
-    <aside className="w-64 bg-gray-100 shadow-md">
-      <nav className="mt-4">
-        <ul>
-          {navItems.map((item) => (
-            <li key={item.path}>
-              {/* Se resalta el enlace activo */}
-              <Link
-                to={item.path}
-                className={`block p-4 text-gray-700 hover:bg-gray-200 ${
-                  currentPath === item.path ? "bg-gray-300 font-bold" : ""
-                }`}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
+    <aside className="w-64 h-full bg-white border-r border-gray-200">
+      <div className="p-6">
+        <h1 className="text-2xl font-bold text-gray-800">My App</h1>
+      </div>
+      <nav className="mt-2">
+        <ul className="space-y-1">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <li key={item.path}>
+                <Link
+                  to={item.path}
+                  className={`flex items-center px-6 py-3 text-gray-700 hover:bg-gray-50 transition-colors duration-200 ${
+                    currentPath === item.path
+                      ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600"
+                      : ""
+                  }`}
+                >
+                  <Icon size={20} className="mr-3" />
+                  <span>{item.name}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </aside>
