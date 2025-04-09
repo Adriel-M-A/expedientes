@@ -1,15 +1,19 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { Sidebar } from "./SideBar";
 import { Menu } from "lucide-react";
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 
-export function MainLayout() {
+interface MainLayoutProps {
+  children: ReactNode;
+}
+
+export function MainLayout({ children }: MainLayoutProps) {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   return (
     <div className="flex min-h-screen bg-gray-50">
-      {/* Mobile sidebar toggle */}
+      {/* Botón para togglear el sidebar en móviles */}
       <button
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-md"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -26,16 +30,17 @@ export function MainLayout() {
         <Sidebar currentPath={location.pathname} />
       </div>
 
-      {/* Main content */}
+      {/* Contenido principal */}
       <div className="flex-1 flex flex-col min-h-screen">
         <main className="flex-1 p-6 lg:p-8 overflow-auto">
           <div className="max-w-7xl mx-auto">
+            {children}
             <Outlet />
           </div>
         </main>
       </div>
 
-      {/* Mobile overlay */}
+      {/* Overlay para móviles */}
       {isSidebarOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30"
