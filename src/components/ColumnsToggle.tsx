@@ -1,4 +1,4 @@
-import { useColumns } from "../context/ColumnsContext";
+import { useColumns, ColumnsVisibility } from "../context/ColumnsContext"; // Se importa ColumnsVisibility
 
 export const ColumnsToggle = () => {
   const { visibleColumns, setVisibleColumns } = useColumns();
@@ -13,8 +13,8 @@ export const ColumnsToggle = () => {
     { key: "fechaCreacion", label: "Fecha Creación" },
   ] as const;
 
-  // Función para alternar la visibilidad de la columna
-  const handleToggle = (key: keyof typeof visibleColumns) => {
+  // Función para alternar la visibilidad de la columna utilizando keyof ColumnsVisibility
+  const handleToggle = (key: keyof ColumnsVisibility) => {
     setVisibleColumns((prev) => ({
       ...prev,
       [key]: !prev[key],
@@ -33,9 +33,7 @@ export const ColumnsToggle = () => {
               onChange={() => handleToggle(key)}
               className="mr-2"
             />
-            <span>
-              {label} ({visibleColumns[key] ? "True" : "False"})
-            </span>
+            <span>{label}</span>
           </li>
         ))}
       </ul>

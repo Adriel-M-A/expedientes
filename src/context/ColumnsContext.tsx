@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-// Definición de la interfaz que indica la visibilidad de cada columna
-interface ColumnsVisibility {
+// Se exporta la interfaz para poder usarla en otros módulos
+export interface ColumnsVisibility {
   numero: boolean;
   año: boolean;
   nombre: boolean;

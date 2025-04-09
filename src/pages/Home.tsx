@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ExpedienteSearch } from "../components/ExpedienteSearch";
-import { ExpedienteList } from "../components/ExpedienteList";
+import ExpedienteTable from "../components/ExpedienteTable";
 
 export default function Home() {
   // Datos de ejemplo, normalmente estos vendrían del backend
@@ -80,7 +80,7 @@ export default function Home() {
 
       <ExpedienteSearch onSearch={handleSearch} />
 
-      <ExpedienteList expedientes={filteredExpedientes} />
+      <ExpedienteTable expedientes={filteredExpedientes} />
     </div>
   );
 }
